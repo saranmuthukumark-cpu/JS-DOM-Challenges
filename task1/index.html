@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>DOM Task | Product List </title>
+      <!-- tailwindcss -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- fontawsome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+     </head>
+<body class="bg-gray-200 ">
+     
+     <section>
+<h1 class= "bg-blue-300 text-center text-3xl py-2 underline" >
+     Product List Task
+</h1>
+     </section>
+
+<div id="product-list"></div>
+
+
+<script>
+
+let products = ["1. Wireless Mouse",
+  "2. Mechanical Keyboard",
+  "3. 27-inch Monitor",
+  "4. USB-C Docking Station",
+  "5. Noise-Canceling Headphones",
+  "6. Bluetooth Speaker",
+  "7. Ergonomic Office Chair",
+  "8. Standing Desk Converter",
+  "9. External Hard Drive (2TB)",
+  "10. Portable Power Bank",
+  "11. Smart Fitness Tracker",
+  "12. LED Desk Lamp",
+  "13. Laptop Cooling Pad",
+  "14. Webcam (1080p)",
+  "15. Desk Organizer Set",
+  "16. Wireless Charging Pad",
+  "17. HDMI Cable (6 ft)",
+  "18. MicroSD Card (128GB)",
+  "19. Gaming Headset",
+  "20. Screen Cleaning Kit",
+  "21. Tablet Stylus Pen",
+  "22. Laptop Sleeve",
+  "23. Smart Plug",
+  "24. Desktop Microphone",
+  "25. Surge Protector",
+  "26. Wi-Fi Range Extender",
+  "27. Portable SSD",
+  "28. USB Flash Drive",
+  "29. Mouse Pad (Extended)",
+  "30. Cable Management Box",
+  "31. Smartphone Gimbal",
+  "32. Portable Projector",
+  "33. VR Headset",
+  "34. Action Camera",
+  "35. Drone with Camera",
+  "36. Smart Light Bulb",
+  "37. E-Reader",
+  "38. Coffee Maker",
+  "39. Electric Kettle",
+  "40. Toaster Oven",
+  "41. Air Purifier",
+  "42. Humidifier",
+  "43. Vacuum Cleaner",
+  "44. Blender",
+  "45. Food Processor",
+  "46. Iron",
+  "47. Hair Dryer",
+  "48. Electric Toothbrush",
+  "49. Digital Kitchen Scale",
+  "50. Security Camera"];
+
+// getting elements by id
+
+let productList = document.getElementById("product-list");
+
+//fragment
+let productDataFragment = document.createDocumentFragment();
+
+// creating ul element
+
+let ulEl = document.createElement("ul");
+ulEl.className = " w-[25%] mx-auto mt-10 bg-white  border border-gray-600 ";
+productList.append(ulEl);
+
+// using foreach to get product-list
+products.forEach((product) => {
+     const liEl = document .createElement("li");
+     liEl.className = "border p-2 m-2 hover:bg-gray-100";
+     liEl.textContent = product;
+     productDataFragment.append(liEl );
+});
+ulEl.append(productDataFragment);
+
+
+</script>
+
+</body>
+</html>

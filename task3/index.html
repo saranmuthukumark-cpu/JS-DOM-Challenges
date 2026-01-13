@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=
+     , initial-scale=1.0" />
+    <title>DOM | Navbar </title>
+  <!-- tailwindcss -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- fontawsome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+  </head>
+  <body class="bg-slate-300">
+     
+    <nav class="mt-10">
+      <div
+        class="bg-green-300 text-black text-center p-4 flex justify-center gap-6">
+        <a href="#home">Home</a>
+        <a href="#course">Course</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="#project">Project</a>
+      </div>
+    </nav>
+
+    <script>
+      let navLinks = document.querySelectorAll("a");
+
+      navLinks.forEach((navlink) => {
+        navlink.addEventListener("click", () => {
+          navLinks.forEach((item) => {
+            item.classList.remove("bg-green-500", "underline");
+
+            navlink.classList.add("bg-green-500", "px-2",  "rounded-lg", "underline" ,"items-center");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
