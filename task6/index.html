@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM | Text Formatter</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- tailwindcss -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- fontawsome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik+Storm&display=swap"
+      rel="stylesheet" />
+    <style>
+      .rubik-storm-regular {
+        font-family: "Rubik Storm", system-ui;
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body class="bg-black">
+    <div>
+      <h1 class="text-white text-4xl rubik-storm-regular my-20 text-center">
+        <span
+          class="inline-block animate-bounce [animation-delay:0ms] bg-gradient-to-r from-white to-indigo-400 text-transparent bg-clip-text"
+          >T</span
+        >
+        <span
+          class="inline-block animate-bounce [animation-delay:150ms] bg-gradient-to-r from-white to-white text-transparent bg-clip-text"
+          >E</span
+        >
+        <span
+          class="inline-block animate-bounce [animation-delay:300ms] bg-gradient-to-r from-white to-indigo-400 text-transparent bg-clip-text"
+          >X</span
+        >
+        <span
+          class="inline-block animate-bounce [animation-delay:450ms] bg-gradient-to-r from-white to-white text-transparent bg-clip-text"
+          >T</span
+        >
+        <span
+          class="inline-block animate-bounce [animation-delay:600ms] bg-gradient-to-r from-white to-indigo-400 text-transparent bg-clip-text"
+          >F</span
+        >
+        <span
+          class="inline-block animate-bounce [animation-delay:750ms] bg-gradient-to-r from-white to-white text-transparent bg-clip-text"
+          >O</span
+        >
+        <span
+          class="inline-block animate-bounce [animation-delay:900ms] bg-gradient-to-r from-white to-indigo-400 text-transparent bg-clip-text"
+          >R</span
+        >
+        <span
+          class="inline-block animate-bounce [animation-delay:1000ms] bg-gradient-to-r from-white to-white text-transparent bg-clip-text"
+          >M</span
+        >
+        <span
+          class="inline-block animate-bounce [animation-delay:900ms] bg-gradient-to-r from-white to-indigo-400 text-transparent bg-clip-text"
+          >A</span
+        >
+        <span
+          class="inline-block animate-bounce [animation-delay:1100ms] bg-gradient-to-r from-white to-white text-transparent bg-clip-text"
+          >T</span
+        >
+        <span
+          class="inline-block animate-bounce [animation-delay:1200ms] bg-gradient-to-r from-white to-indigo-400 text-transparent bg-clip-text"
+          >T</span
+        >
+        <span
+          class="inline-block animate-bounce [animation-delay:1300ms] bg-gradient-to-r from-white to-white text-transparent bg-clip-text"
+          >E</span
+        >
+        <span
+          class="inline-block animate-bounce [animation-delay:900ms] bg-gradient-to-r from-white to-indigo-400 text-transparent bg-clip-text"
+          >R</span
+        >
+      </h1>
+    </div>
+
+    <div
+      id="header"
+      class="w-full max-w-lg mx-auto p-6 bg-white rounded-xl shadow-lg space-y-4">
+      <h2 class="text-2xl font-bold text-gray-800">Leave a Comment</h2>
+      <textarea
+        id="textArea"
+        class="w-full p-3 border border-gray-300 rounded-lg outline-none"
+        rows="2"
+        maxlength="200"
+        placeholder="Share your Comments..."></textarea>
+      <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">Max 200 characters</span>
+        <div>
+          <button
+            id="btn"
+            class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-800 transition duration-150 shadow-md">
+            To Upper
+          </button>
+          <button
+            id="btnLow"
+            class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-800 transition duration-150 shadow-md">
+            To Lower
+          </button>
+          <button
+            id="clearbtn"
+            class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-150 shadow-md">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let btnEl = document.getElementById("btn");
+      let btnLowEl = document.getElementById("btnLow");
+      let textAreaEl = document.getElementById("textArea");
+      let clearBtnEl = document.getElementById("clearbtn");
+      let headerEl = document.getElementById("header");
+
+      btnEl.addEventListener("click", () => {
+        toUpper();
+        let deleteDiv = document.createElement("div");
+        deleteDiv.innerHTML = "<strong>✅ Converted to UPPER CASE </strong> ";
+        deleteDiv.className =
+          "text-start mt-3 mb-8 pl-2 bg-green-300 w-[450px] mx-auto rounded-sm border-l-4 border-green-800";
+
+        headerEl.prepend(deleteDiv);
+
+        setTimeout(() => {
+          deleteDiv.remove();
+        }, 3000);
+      });
+
+      btnLowEl.addEventListener("click", () => {
+        toLower();
+        let deleteDiv = document.createElement("div");
+        deleteDiv.innerHTML = "<strong>✅ Converted to LOWER CASE </strong> ";
+        deleteDiv.className =
+          "text-start mt-3 mb-8 pl-2 bg-green-300 w-[450px] mx-auto rounded-sm border-l-4 border-green-800";
+
+        headerEl.prepend(deleteDiv);
+
+        setTimeout(() => {
+          deleteDiv.remove();
+        }, 3000);
+      });
+
+      function toUpper() {
+        let textValue = textArea.value.toUpperCase();
+
+        textAreaEl.value = textValue;
+      }
+
+      function toLower() {
+        let textValue = textArea.value.toLowerCase();
+
+        textAreaEl.value = textValue;
+      }
+
+      clearBtnEl.addEventListener("click", () => {
+        textAreaEl.value = "";
+
+        let deleteDiv = document.createElement("div");
+        deleteDiv.innerHTML = "<strong>❌ CLEARED </strong> ";
+        deleteDiv.className =
+          "text-start mt-3 mb-8 pl-2 bg-red-300 w-[450px] mx-auto rounded-sm border-l-4 border-red-800";
+
+        headerEl.prepend(deleteDiv);
+
+        setTimeout(() => {
+          deleteDiv.remove();
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>

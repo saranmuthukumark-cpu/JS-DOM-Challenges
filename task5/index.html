@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM | Background Color Switcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+      <!-- tailwindcss -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- fontawsome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+  </head>
+  <body id="body">
+    
+    <nav>
+      <h1 class="text-3xl text-center py-4 font-semibold mt-10">
+        Change Background in OneClick
+      </h1>
+    </nav>
+
+    <main class="mt-10">
+      <div class="flex justify-center gap-2">
+        <button
+          class="border-2 border-green-600 px-1 bg-green-300 rounded-lg hover:scale-120"
+          id="greenBtn">
+          Green
+        </button>
+        <button
+          class="border-2 border-red-600 px-1 bg-red-300 rounded-lg hover:scale-120"
+          id="redBtn">
+          Red
+        </button>
+        <button
+          class="border-2 border-gray-600 px-1 bg-gray-300 rounded-lg hover:scale-120"
+          id="grayBtn">
+          gray
+        </button>
+        <button
+          class="border-2 border-yellow-600 px-1 bg-yellow-300 rounded-lg hover:scale-120"
+          id="yellowBtn">
+          yellow
+        </button>
+        <button
+          class="border-2 border-purple-600 px-1 bg-purple-300 rounded-lg hover:scale-120"
+          id="purpleBtn">
+          purple
+        </button>
+        <button
+          class="border-2 border-purple-600 px-1 bg-linear-to-l from-blue-400 to-pink-400 rounded-lg hover:scale-120"
+          id="randomBtn">
+          random
+        </button>
+      </div>
+    </main>
+    <!-- div bg -->
+
+    <div class="flex flex-col space-y-5 w-[500px] items-center mt-5 mx-auto">
+      <div class="w-[220px] flex justify-center rounded-full" id="divBg">
+        <img src="hi.png" alt="" class="h-50 w-80 rounded-full  hover:animate-spin" />
+      </div>
+
+      <div class="flex justify-center gap-1">
+        <button
+          class="border-2 border-green-600 px-1 bg-green-300 rounded-full hover:scale-120 w-10 h-10"
+          id="greenBtn1"></button>
+        <button
+          class="border-2 border-red-600 px-1 bg-red-300 rounded-full hover:scale-120 w-10 h-10"
+          id="redBtn1"></button>
+        <button
+          class="border-2 border-gray-600 px-1 bg-gray-300 rounded-full hover:scale-120 w-10 h-10"
+          id="grayBtn1"></button>
+        <button
+          class="border-2 border-yellow-600 px-1 bg-yellow-300 rounded-full hover:scale-120 w-10 h-10"
+          id="yellowBtn1"></button>
+        <button
+          class="border-2 border-purple-600 px-1 bg-purple-300 rounded-full hover:scale-120 w-10 h-10"
+          id="purpleBtn1"></button>
+        <button
+          class="border-2 border-purple-600 px-1 bg-linear-to-l from-blue-400 to-pink-400 rounded-full w-10 h-10 hover:scale-120"
+          id="randomBtn1"></button>
+      </div>
+    </div>
+
+    <script>
+      let greenBtnEl = document.getElementById("greenBtn");
+
+      let redBtnEl = document.getElementById("redBtn");
+
+      let grayBtnEl = document.getElementById("grayBtn");
+
+      let yellowBtnEl = document.getElementById("yellowBtn");
+
+      let purpleBtnEl = document.getElementById("purpleBtn");
+
+      let randomBtnEl = document.getElementById("randomBtn");
+
+      let bodyEl = document.getElementById("body");
+
+      greenBtnEl.addEventListener("click", (event) => {
+        event.preventDefault();
+        bodyEl.className = "bg-green-100  ";
+      });
+      redBtnEl.addEventListener("click", () => {
+        bodyEl.className = "bg-red-100  ";
+      });
+      grayBtnEl.addEventListener("click", () => {
+        bodyEl.className = "bg-gray-100  ";
+      });
+      yellowBtnEl.addEventListener("click", () => {
+        bodyEl.className = "bg-yellow-100  ";
+      });
+      purpleBtnEl.addEventListener("click", () => {
+        bodyEl.className = "bg-purple-100  ";
+      });
+
+      randomBtnEl.addEventListener("click", () => {
+        const colour = [
+          "bg-red-200 ",
+          "bg-green-200 ",
+          "bg-purple-200  ",
+          "bg-yellow-200  ",
+          "bg-blue-200  ",
+          "bg-orange-200  ",
+          "bg-pink-200 ",
+        ];
+
+        let randomColour = Math.floor(Math.random() * 7);
+        //console.log(randomColour)
+
+        bodyEl.className = `${colour[randomColour]}`;
+      });
+
+      /// div colour
+
+      let greenEl = document.getElementById("greenBtn1");
+
+      let redEl = document.getElementById("redBtn1");
+
+      let grayEl = document.getElementById("grayBtn1");
+
+      let yellowEl = document.getElementById("yellowBtn1");
+
+      let purpleEl = document.getElementById("purpleBtn1");
+
+      let randomEl = document.getElementById("randomBtn1");
+
+      let divBgEl = document.getElementById("divBg");
+
+      greenEl.addEventListener("click", (event) => {
+        event.preventDefault();
+        divBgEl.className = "bg-green-100  rounded-full w-[220px] ";
+      });
+      redEl.addEventListener("click", () => {
+        divBgEl.className = "bg-red-100  rounded-full w-[220px] ";
+      });
+      grayEl.addEventListener("click", () => {
+        divBgEl.className = "bg-gray-100  rounded-full w-[220px] ";
+      });
+      yellowEl.addEventListener("click", () => {
+        divBgEl.className = "bg-yellow-100  rounded-full w-[220px] ";
+      });
+      purpleEl.addEventListener("click", () => {
+        divBgEl.className = "bg-purple-100  rounded-full w-[220px] ";
+      });
+
+      randomEl.addEventListener("click", () => {
+        const colours = [
+          "bg-red-200   rounded-full w-[220px] ",
+          "bg-green-200  rounded-full w-[220px] ",
+          "bg-purple-200  rounded-full w-[220px] ",
+          "bg-yellow-200  rounded-full  w-[220px]",
+          "bg-blue-200  rounded-full w-[220px] ",
+          "bg-orange-200  rounded-full w-[220px] ",
+          "bg-pink-200  rounded-full w-[220px] ",
+        ];
+
+        let randomColour = Math.floor(Math.random() * 7);
+        //console.log(randomColour)
+
+        divBgEl.className = `${colours[randomColour]}`;
+      });
+    </script>
+  </body>
+</html>
