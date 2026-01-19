@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM |</title>
+    <!-- tailwindcss -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- fontawsome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Griffy&display=swap"
+      rel="stylesheet" />
+    <style>
+      .griffy-regular {
+        font-family: "Griffy", system-ui;
+        font-weight: 700;
+        font-style: normal;
+      }
+    </style>
+  </head>
+
+  <body class="bg-[url(./bg-hero.png)] bg-cover backdrop-blur-xs h-screen">
+    <nav class="bg-blur-lg p-5 items-center mb-10 bg-green-700">
+      <div class="flex justify-between px-15">
+        <div>
+          <h1 class="griffy-regular text-2xl">ShopEasy</h1>
+        </div>
+        <div class="flex gap-10 items-center">
+          <div class="relative">
+            <h1 class="hover:bg-green-100 rounded-lg px-3 py-1">
+              <i class="fa-solid fa-cart-arrow-down fa-xl"></i>
+            </h1>
+            <div
+              class="absolute -top-2 -right-1 rounded-full bg-red-400 text-white w-7 h-5 flex justify-center items-center"
+              id="navCart">
+              0
+            </div>
+          </div>
+          <h1 class="hover:bg-green-100 rounded-lg px-3 py-1">
+            <i class="fa-brands fa-github fa-xl"></i>
+          </h1>
+        </div>
+      </div>
+    </nav>
+    <main class="flex justify-center">
+      <div class="bg-white w-full mx-auto max-w-xl rounded-2xl shadow-xl p-6">
+        <h1 class="text-3xl font-bold text-center text-green-700 mb-8">
+          Weekly Shopping List 🛒
+        </h1>
+        <div id="header"></div>
+        <div class="grid grid-cols-4 gap-3 mb-6">
+          <input
+            type="text"
+            id="productName"
+            placeholder="Product Name*"
+            required
+            class="col-span-2 border rounded-lg px-3 py-2 outline-none" />
+          <input
+            type="number"
+            id="productPrice"
+            placeholder="₹ Price*"
+            required
+            class="border rounded-lg px-3 py-2 outline-none" />
+          <input
+            type="text"
+            id="quantity"
+            placeholder="No.Quantity*"
+            required
+            class="border rounded-lg px-1 py-2 outline-none" />
+        </div>
+        <div>
+          <button
+            id="cart"
+            class="w-100 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-700">
+            <i class="fa-solid fa-cart-arrow-down"></i> Add to Cart
+          </button>
+          <button
+            class="w-30 bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-700"
+            id="reset">
+            Reset
+          </button>
+        </div>
+
+        <div class="items-center pt-4 rounded-xl">
+          <span class="text-lg font-semibold text-gray-700">Total Amount:</span>
+          <span class="text-2xl font-bold text-green-600">
+            ₹ <span id="total">0</span>
+          </span>
+        </div>
+        <div>
+          <h1
+            class="text-center text-2xl font-bold text-green-500 my-5 hidden"
+            id="cartHead">
+            <hr class="mb-3" />
+            My List :
+          </h1>
+          <ul id="cartList" class="space-y-3 mb-6"></ul>
+        </div>
+      </div>
+    </main>
+    <script>
+      let productNameEl = document.getElementById("productName");
+      let productPriceEl = document.getElementById("productPrice");
+      let productQuantityEl = document.getElementById("quantity");
+      let resetEl = document.getElementById("reset");
+      let headerEl = document.getElementById("header");
+      let cartEl = document.getElementById("cart");
+      let cartListEl = document.getElementById("cartList");
+      let cartHeadEl = document.getElementById("cartHead");
+      let totalEl = document.getElementById("total");
+      let navCartEl = document.getElementById("navCart");
+      let cartCount = 0;
+
+      function navcart() {
+        navCartEl.textContent = cartCount;
+
+        if (cartCount > 0) {
+          navCartEl.classList.remove("bg-red-400");
+          navCartEl.classList.add("bg-green-400");
+        } else {
+          navCartEl.classList.add("bg-red-400");
+          navCartEl.classList.remove("bg-green-400");
+        }
+      }
+
+      function reset() {
+        //delete alert
+        let deleteDiv = document.createElement("div");
+        deleteDiv.innerHTML = "List has been <strong>Cleared! </strong> ";
+        deleteDiv.className =
+          "text-start mt-3 mb-8 pl-2 bg-red-300 w-[450px] mx-auto rounded-sm border-l-4 border-red-800";
+        headerEl.append(deleteDiv);
+        //set time
+
+        setTimeout(() => {
+          deleteDiv.remove();
+        }, 3000);
+      }
+      function cartAdd() {
+        //delete alert
+        let addDiv = document.createElement("div");
+        addDiv.innerHTML = "List has been <strong>Added to Cart! </strong> ";
+        addDiv.className =
+          "text-start mt-3 mb-8 pl-2 bg-green-300 w-[450px] mx-auto rounded-sm border-l-4 border-green-800 ";
+        headerEl.append(addDiv);
+        //set time
+
+        setTimeout(() => {
+          addDiv.remove();
+        }, 3000);
+      }
+      cartEl.addEventListener("click", (event) => {
+        event.preventDefault();
+        cartAdd();
+        cartCount++;
+        navcart();
+
+        //cart count
+
+        cartHeadEl.classList.remove("hidden");
+
+        let cartDiv = document.createElement("div");
+        cartDiv.className =
+          "  items-start pt-2 pl-4 pr-4 mb-5 mt-5 border border-green-400 w-[400px] mx-auto rounded-lg bg-green-100";
+
+        let nameEl = document.createElement("p");
+        nameEl.className = "text-black capitalize ";
+        nameEl.innerHTML = ` Name: <strong>${productNameEl.value}</strong>`;
+
+        let priceEl = document.createElement("p");
+        priceEl.className = "text-black ";
+        priceEl.textContent = `Price: ₹${productPriceEl.value}`;
+
+        let quantityEl = document.createElement("p");
+        quantityEl.className = "text-black ";
+        quantityEl.textContent = `Quantity : ${productQuantityEl.value}`;
+
+        //total append
+        let amount =
+          Number(productPriceEl.value) * Number(productQuantityEl.value);
+
+        let currentTotal = Number(totalEl.innerText) || 0;
+
+        let finalTotal = currentTotal + amount;
+
+        totalEl.innerText = finalTotal;
+
+        //button
+        let delBtnEl = document.createElement("button");
+        delBtnEl.textContent = "❌";
+        delBtnEl.className = "bg-red-200 p-2 mt-2 mb-2 w-full rounded-lg ";
+        delBtnEl.addEventListener("click", () => {
+          //
+          cartCount--;
+          navcart();
+          //navCartEl.textContent = cartCount;
+          //
+          cartDiv.remove();
+
+          //delete alert
+          let deleteDiv = document.createElement("div");
+          deleteDiv.innerHTML = "Product has been <strong>Removed! </strong> ";
+          deleteDiv.className =
+            "text-start mt-3 mb-8 pl-2 bg-red-300 w-[450px] mx-auto rounded-sm border-l-4 border-red-800";
+          headerEl.append(deleteDiv);
+          //set time
+
+          setTimeout(() => {
+            deleteDiv.remove();
+          }, 3000);
+        });
+
+        //append
+        cartDiv.append(nameEl, priceEl, quantityEl, delBtnEl);
+        cartListEl.append(cartDiv);
+      });
+
+      resetEl.addEventListener("click", () => {
+        reset();
+
+        productNameEl.value = "";
+        productPriceEl.value = "";
+        productQuantityEl.value = "";
+      });
+    </script>
+  </body>
+</html>
