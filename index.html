@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOM | Projects list</title>
     <!-- tailwindcss -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- tailwind config.js -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {},
+        },
+      };
+    </script>
     <!-- fontawsome cdn -->
     <link
       rel="stylesheet"
@@ -19,15 +28,12 @@
       scroll-behavior: smooth;
     }
   </style>
-  <body class="bg-gray-200">
+  <body class="bg-gray-200 dark:bg-gray-900" id="body">
     <nav>
-      <div class="flex justify-between px-15 py-1 bg-[#692be3]">
+      <div class="flex justify-between px-20 py-2 bg-[#692be3]">
         <div>
           <a href="#"
-            ><img
-              src="src/img/saran logo.jpg"
-              alt="saran-logo"
-              class="h-15 w-15 rounded-full"
+            ><img src="./cdn-white.svg" alt="cdn-logo" class="h-10"
           /></a>
         </div>
         <div class="flex items-center gap-10">
@@ -43,40 +49,54 @@
             class="hover:bg-gray-500 p-2 rounded-lg"
             ><i class="fa-brands fa-github fa-xl" style="color: white"></i
           ></a>
+          <button
+            id="darkMode"
+            class="hover:bg-gray-500 p-2 px-3 rounded-lg dark:hidden">
+            <i class="fa-solid fa-moon" style="color: white"></i>
+          </button>
+
+          <button
+            id="lightMode"
+            class="hover:bg-gray-500 p-2 px-3 rounded-lg hidden dark:flex">
+            <i
+              class="fa-solid fa-lightbulb"
+              id="light"
+              style="color: white"></i>
+          </button>
         </div>
       </div>
     </nav>
     <!-- hero section -->
     <main>
-      <div class="flex justify-between mx-18 mt-10">
-        <div class="mt-25 ml-5">
-          <h1 class="text-5xl font-bold">
+      <div class="flex justify-between mx-20 mt-10 dark:text-white">
+        <div class="mt-40 ml-5">
+          <h1 class="text-5xl font-bold ml-12">
             <span
-              class="inline-block animate-bounce [animation-delay:0ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text"
+              class="inline-block animate-bounce [animation-delay:0ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text dark:text-white"
               >W</span
             >
             <span
-              class="inline-block animate-bounce [animation-delay:150ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text"
+              class="inline-block animate-bounce [animation-delay:150ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text dark:text-white"
               >E</span
             >
             <span
-              class="inline-block animate-bounce [animation-delay:300ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text"
+              class="inline-block animate-bounce [animation-delay:300ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text dark:text-white"
               >L</span
             >
             <span
-              class="inline-block animate-bounce [animation-delay:450ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text"
+              class="inline-block animate-bounce [animation-delay:450ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text dark:text-white"
               >C</span
             >
             <span
-              class="inline-block animate-bounce [animation-delay:600ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text"
+              class="inline-block animate-bounce [animation-delay:600ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text dark:text-white"
               >O</span
             >
             <span
-              class="inline-block animate-bounce [animation-delay:750ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text"
+              class="inline-block animate-bounce [animation-delay:750ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text dark:text-white"
               >M</span
             >
             <span
-              class="inline-block animate-bounce [animation-delay:900ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text"
+              class="inline-block animate-bounce [animation-delay:900ms] bg-gradient-to-r from-indigo-400 to-indigo-800 text-transparent bg-clip-text dark:text-white"
               >E</span
             >
             <span class="inline-block ml-2"
@@ -94,24 +114,26 @@
             ></span>
           </h1>
           <div class="mt-10 ml-3">
-            <h2 class="text-4xl text-indigo-900">
+            <h2 class="text-4xl text-indigo-900 dark:text-white">
               To <strong>CyberDude</strong> Internship 2026.
             </h2>
           </div>
           <div class="">
-            <h3 class="text-3xl ml-4 mt-7 mb-7 text-gray-800">
+            <h3 class="text-3xl ml-4 mt-7 mb-7 text-gray-800 dark:text-white">
               My JavaScript Daily Challenges
             </h3>
-            <a
-              href="./task.html"
-              class="bg-indigo-300 text-indigo-800 rounded-lg px-4 py-4 ml-30 font-bold"
-              >Explore</a
-            >
-            <a
-              href="https://www.youtube.com/@CyberDudeNetworks/playlists"
-              class="bg-indigo-300 text-indigo-800 rounded-lg px-4 py-4 ml-3 font-bold"
-              >View Playlist</a
-            >
+            <div class="ml-20 mt-10">
+              <a
+                href="./task.html"
+                class="bg-indigo-300 dark:text-white text-indigo-800 rounded-lg px-4 py-4 ml-25 font-bold"
+                >Explore</a
+              >
+              <a
+                href="https://www.youtube.com/@CyberDudeNetworks/playlists"
+                class="bg-indigo-300 dark:text-white text-indigo-800 rounded-lg px-4 py-4 ml-3 font-bold"
+                >View Playlist</a
+              >
+            </div>
           </div>
         </div>
 
@@ -123,5 +145,18 @@
         </div>
       </div>
     </main>
+
+    <script>
+      let darkBtn = document.getElementById("darkMode");
+      let lightBtn = document.getElementById("lightMode");
+      let html = document.documentElement;
+
+      darkBtn.addEventListener("click", () => {
+        html.classList.toggle("dark");
+      });
+      lightBtn.addEventListener("click", () => {
+        html.classList.toggle("dark");
+      });
+    </script>
   </body>
 </html>

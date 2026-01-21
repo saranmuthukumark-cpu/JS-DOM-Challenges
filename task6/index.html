@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -90,13 +90,13 @@
       class="w-full max-w-lg mx-auto p-6 bg-white rounded-xl shadow-lg space-y-4">
       <h2 class="text-2xl font-bold text-gray-800">Leave a Comment</h2>
       <textarea
-        id="textArea"
-        class="w-full p-3 border border-gray-300 rounded-lg outline-none"
+      id="textArea"
+        class="w-full p-3 border border-gray-300 rounded-lg outline-none textArea"
         rows="2"
-        maxlength="200"
+        
         placeholder="Share your Comments..."></textarea>
       <div class="flex justify-between items-center">
-        <span class="text-sm text-gray-500">Max 200 characters</span>
+        <span class="text-sm text-gray-500" id="count">Max 200 characters</span>
         <div>
           <button
             id="btn"
@@ -123,6 +123,15 @@
       let textAreaEl = document.getElementById("textArea");
       let clearBtnEl = document.getElementById("clearbtn");
       let headerEl = document.getElementById("header");
+
+      ///max
+      const count = document.getElementById("count");
+      const maxLength = 200;
+
+      textAreaEl.addEventListener("input", () => {
+        const length = textAreaEl.value.length;
+        count.textContent = `${length} / ${maxLength} characters`;
+      });
 
       btnEl.addEventListener("click", () => {
         toUpper();
@@ -166,6 +175,8 @@
 
       clearBtnEl.addEventListener("click", () => {
         textAreaEl.value = "";
+      //max
+      count.textContent = `0 / ${maxLength} characters`;
 
         let deleteDiv = document.createElement("div");
         deleteDiv.innerHTML = "<strong>❌ CLEARED </strong> ";

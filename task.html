@@ -1,12 +1,21 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DOM | Tasks page</title>
+    <title>DOM | Projects list</title>
     <!-- tailwindcss -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+<!-- tailwind config.js -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {},
+        },
+      };
+    </script>
     <!-- fontawsome cdn -->
     <link
       rel="stylesheet"
@@ -15,15 +24,17 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
   </head>
-  <body class="bg-gray-300">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+  <body class="bg-gray-200 dark:bg-gray-900" id="body">
     <nav>
-      <div class="flex justify-between px-15 py-1 bg-[#692be3]">
+      <div class="flex justify-between px-20 py-2 bg-[#692be3]">
         <div>
           <a href="#"
-            ><img
-              src="src/img/saran logo.jpg"
-              alt="saran-logo"
-              class="h-15 w-15 rounded-full"
+            ><img src="./cdn-white.svg" alt="cdn-logo" class="h-10"
           /></a>
         </div>
         <div class="flex items-center gap-10">
@@ -35,31 +46,44 @@
           >
           <a
             href="https://github.com/saranmuthukumark-cpu"
+            target="_blank"
             class="hover:bg-gray-500 p-2 rounded-lg"
             ><i class="fa-brands fa-github fa-xl" style="color: white"></i
           ></a>
+        <button id="darkMode" class="hover:bg-gray-500 p-2 px-3 rounded-lg dark:hidden">
+            <i class="fa-solid fa-moon" style="color: white"></i>
+          </button>
+
+          <button
+            id="lightMode"
+            class="hover:bg-gray-500 p-2 px-3 rounded-lg  hidden dark:flex">
+            <i
+              class="fa-solid fa-lightbulb"
+              id="light"
+              style="color: white"></i>
+          </button>
         </div>
       </div>
     </nav>
 
-    <main>
-      <div class=" text-center text-4xl py-4">
+    <main class=" dark:bg-gray-900">
+      <div class=" text-center text-4xl py-4 ">
         <h1
-          class="font-bold bg-gradient-to-t from-indigo-500 to-indigo-800 text-transparent bg-clip-text">
-          My Tasks
+          class="font-bold bg-gradient-to-t from-indigo-500 to-indigo-800 text-transparent bg-clip-text dark:text-white">
+          JAN Tasks
         </h1>
       </div>
 <!-- tasks -->
-      <section id="projects" class="py-10 px-4 bg-gray-200">
+      <section id="projects" class="py-10 px-4 bg-gray-200  dark:bg-gray-900 dark:text-white">
         <div class=" mx-auto">
-            <div class="flex flex-col w-[600px] gap-y-5 mx-auto">
-                <div class="bg-white rounded-lg shadow-md ">
+            <div class="flex flex-col w-[600px] gap-y-5 mx-auto ">
+                <div class="bg-white rounded-lg shadow-md  dark:bg-gray-600 ">
                     <div class="p-6"><div class="flex justify-between"> <h4 class="text-xl font-semibold mb-2">Task 1: Products List</h4>
                      <a href="https://github.com/saranmuthukumark-cpu/js-practice-task" class="px-3 py-3 bg-indigo-100 text-indigo-800 rounded-full text-sm items-center "><i class="fa-brands fa-github fa-xl  " ></i
                          ></a></div>
                        
 
-                        <p class="text-gray-600 mb-4">6.Jan.2026</p>
+                        <p class="text-gray-600 mb-4 dark:text-white">6.Jan.2026</p>
                         <div class="flex gap-2">
                            <a href="./task1/index.html" target="_blank"><span class="px-3 py-1 bg-green-200 text-green-600 font-bold  rounded-full text-sm">Live Demo</span></a> 
                         </div>
@@ -67,13 +91,13 @@
 
                     
                 </div>
-                 <div class="bg-white rounded-lg shadow-md ">
+                 <div class="bg-white rounded-lg shadow-md  dark:bg-gray-600 ">
                     <div class="p-6"><div class="flex justify-between"> <h4 class="text-xl font-semibold mb-2">Task 2: Dynamic User</h4>
                      <a href="https://github.com/saranmuthukumark-cpu/js-practice-task" class="px-3 py-3 bg-indigo-100 text-indigo-800 rounded-full text-sm items-center "><i class="fa-brands fa-github fa-xl  " ></i
                          ></a></div>
                        
 
-                        <p class="text-gray-600 mb-4">Date: 6.Jan.2026</p>
+                        <p class="text-gray-600 mb-4 dark:text-white">6.Jan.2026</p>
                         <div class="flex gap-2">
                            <a href="./task2/index.html" target="_blank"><span class="px-3 py-1 bg-green-200 text-green-600 font-bold rounded-full text-sm">Live Demo</span></a> 
                         </div>
@@ -81,13 +105,13 @@
 
                     
                 </div>
-                 <div class="bg-white rounded-lg shadow-md ">
+                 <div class="bg-white rounded-lg shadow-md  dark:bg-gray-600">
                     <div class="p-6"><div class="flex justify-between"> <h4 class="text-xl font-semibold mb-2">Task 3: Active NavBar</h4>
                      <a href="https://github.com/saranmuthukumark-cpu/js-practice-task" class="px-3 py-3 bg-indigo-100 text-indigo-800 rounded-full text-sm items-center "><i class="fa-brands fa-github fa-xl  " ></i
                          ></a></div>
                        
 
-                        <p class="text-gray-600 mb-4">Date: 6.Jan.2026</p>
+                        <p class="text-gray-600 mb-4 dark:text-white">6.Jan.2026</p>
                         <div class="flex gap-2">
                            <a href="./task3/index.html" target="_blank"><span class="px-3 py-1 bg-green-200 text-green-600  font-bold rounded-full text-sm">Live Demo</span></a> 
                         </div>
@@ -95,13 +119,13 @@
 
                     
                 </div>
-                 <div class="bg-white rounded-lg shadow-md ">
+                 <div class="bg-white rounded-lg shadow-md  dark:bg-gray-600 ">
                     <div class="p-6"><div class="flex justify-between"> <h4 class="text-xl font-semibold mb-2">Task 4: Greeting Bot</h4>
                      <a href="https://github.com/saranmuthukumark-cpu/JS--DOM/tree/main/JS-daily-task" class="px-3 py-3 bg-indigo-100 text-indigo-800 rounded-full text-sm items-center "><i class="fa-brands fa-github fa-xl  " ></i
                          ></a></div>
                        
 
-                        <p class="text-gray-600 mb-4">Date: 12.Jan.26</p>
+                        <p class="text-gray-600 mb-4 dark:text-white">12.Jan.26</p>
                         <div class="flex gap-2">
                            <a href="./task4/index.html" target="_blank"><span class="px-3 py-1 bg-green-200 text-green-600 font-bold rounded-full text-sm">Live Demo</span></a> 
                         </div>
@@ -109,13 +133,13 @@
 
                     
                 </div>
-                 <div class="bg-white rounded-lg shadow-md ">
+                 <div class="bg-white rounded-lg shadow-md  dark:bg-gray-600">
                     <div class="p-6"><div class="flex justify-between"> <h4 class="text-xl font-semibold mb-2">Task 5: Background Colour Switcher</h4>
                      <a href="https://github.com/saranmuthukumark-cpu/JS--DOM/tree/main/JS-daily-task" class="px-3 py-3 bg-indigo-100 text-indigo-800 rounded-full text-sm items-center "><i class="fa-brands fa-github fa-xl  " ></i
                          ></a></div>
                        
 
-                        <p class="text-gray-600 mb-4">Date: 12.Jan.26</p>
+                        <p class="text-gray-600 mb-4 dark:text-white">12.Jan.26</p>
                         <div class="flex gap-2">
                            <a href="./task5/index.html" target="_blank"><span class="px-3 py-1 bg-green-200 text-green-600 font-bold rounded-full text-sm">Live Demo</span></a> 
                         </div>
@@ -123,13 +147,13 @@
 
                     
                 </div>
-                <div class="bg-white rounded-lg shadow-md ">
+                <div class="bg-white rounded-lg shadow-md  dark:bg-gray-600">
                     <div class="p-6"><div class="flex justify-between"> <h4 class="text-xl font-semibold mb-2">Task 6: Text Formatter</h4>
                      <a href="https://github.com/saranmuthukumark-cpu/JS--DOM/tree/main/JS-daily-task" class="px-3 py-3 bg-indigo-100 text-indigo-800 rounded-full text-sm items-center "><i class="fa-brands fa-github fa-xl  " ></i
                          ></a></div>
                        
 
-                        <p class="text-gray-600 mb-4">Date: 18.Jan.26</p>
+                        <p class="text-gray-600 mb-4 dark:text-white">18.Jan.26</p>
                         <div class="flex gap-2">
                            <a href="./task6/index.html" target="_blank"><span class="px-3 py-1 bg-green-200 text-green-600 font-bold rounded-full text-sm">Live Demo</span></a> 
                         </div>
@@ -137,26 +161,26 @@
 
                     
                 </div>
-                <div class="bg-white rounded-lg shadow-md ">
+                <div class="bg-white rounded-lg shadow-md  dark:bg-gray-600">
                     <div class="p-6"><div class="flex justify-between"> <h4 class="text-xl font-semibold mb-2">Task 7: Show/Hide Password</h4>
                      <a href="https://github.com/saranmuthukumark-cpu/JS--DOM/tree/main/JS-daily-task" class="px-3 py-3 bg-indigo-100 text-indigo-800 rounded-full text-sm items-center "><i class="fa-brands fa-github fa-xl  " ></i
                          ></a></div>
                        
 
-                        <p class="text-gray-600 mb-4">Date: 18.Jan.26</p>
+                        <p class="text-gray-600 mb-4 dark:text-white">18.Jan.26</p>
                         <div class="flex gap-2">
                            <a href="./task7/index.html" target="_blank"><span class="px-3 py-1 bg-green-200 text-green-600 font-bold rounded-full text-sm">Live Demo</span></a> 
                         </div>
                     </div>
 
                     
-                </div>  <div class="bg-white rounded-lg shadow-md ">
+                </div>  <div class="bg-white rounded-lg shadow-md  dark:bg-gray-600">
                     <div class="p-6"><div class="flex justify-between"> <h4 class="text-xl font-semibold mb-2">Task 8 & 9: Shopping list & Simple Cart Counter</h4>
                      <a href="https://github.com/saranmuthukumark-cpu/JS--DOM/tree/main/JS-daily-task" class="px-3 py-3 bg-indigo-100 text-indigo-800 rounded-full text-sm items-center "><i class="fa-brands fa-github fa-xl  " ></i
                          ></a></div>
                        
 
-                        <p class="text-gray-600 mb-4">Date: 19.Jan.26</p>
+                        <p class="text-gray-600 mb-4 dark:text-white">19.Jan.26</p>
                         <div class="flex gap-2">
                            <a href="./task8/index.html" target="_blank"><span class="px-3 py-1 bg-green-200 text-green-600 font-bold rounded-full text-sm">Live Demo</span></a> 
                         </div>
@@ -170,5 +194,19 @@
         </div>
     </section>
     </main>
+    <script>
+      let darkBtn = document.getElementById("darkMode");
+      let lightBtn = document.getElementById("lightMode");
+      let html = document.documentElement;
+      
+      darkBtn.addEventListener("click", () => {
+        html.classList.toggle("dark");
+
+        
+      });
+      lightBtn.addEventListener("click", () => {
+          html.classList.toggle("dark");
+        });
+    </script>
   </body>
 </html>
