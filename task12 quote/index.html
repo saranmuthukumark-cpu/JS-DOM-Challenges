@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM | Quote</title>
+    <!-- tailwindcss -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- fontawsome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tourney:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet" />
+    <style>
+      .tourney {
+        font-family: "Tourney", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+      }
+    </style>
+  </head>
+  <body class="bg-indigo-300">
+    <div class="">
+      <div class="flex">
+        <h1
+          class="text-4xl mx-auto py-10 tourney text-indigo-700 bg-clip-content">
+          RANDOM QUOTE
+        </h1>
+      </div>
+      <div class="text-center">
+        <button
+          onclick="randomQuote()"
+          class="border-2 text-white border-violet-700 p-3 rounded-xl cursor-pointer bg-linear-to-bl from-violet-500 to-fuchsia-500">
+          Generate 🖌️
+        </button>
+      </div>
+      <div
+        class="max-w-xl  mx-auto mt-10 text-xl font-bold text-center bg-white rounded-lg border-2 border-violet-500 hidden"
+        id="quotesView"></div>
+    </div>
+
+    <script>
+      let randomQuoteEl = document.getElementById("quotesView");
+      const quotes = [
+        "எண்ணித் துணிக கருமம் - திருவள்ளுவர்",
+        "யாதும் ஊரே யாவரும் கேளிர் - கணியன் பூங்குன்றனார்",
+        "தன்னலம் கருதாதவனே தலைவன் - அண்ணா",
+        "சித்திரமும் கைப்பழக்கம் செந்தமிழும் நாப்பழக்கம் - ஔவையார்",
+        "அன்பே சிவம் - திருமூலர்",
+        "வாய்மையே வெல்லும் - வாய்மொழி",
+        "வாழ்க நீ எம்மான் - பாரதியார்",
+        "கற்க கசடறக் கற்பவை - திருவள்ளுவர்",
+        "அச்சம் தவிர் - பாரதியார்",
+        "தீதும் நன்றும் பிறர்தர வாரா - கணியன் பூங்குன்றனார்",
+        "தொட்டனைத் தூறும் மணற்கேணி - திருவள்ளுவர்",
+        "ஆலமரத்தடியில் அமர்ந்து யோசி - பாரதிதாசன்",
+        "எண்ணுயர்வு தனை எய்திடுக - பாரதியார்",
+        "அறம் செய்ய விரும்பு - ஔவையார்",
+        "உள்ளுவதெல்லாம் உயர்வுள்ளல் - திருவள்ளுவர்",
+        "தனி ஒருவனுக்கு உணவில்லை எனில் ஜகத்தினை அழித்திடுவோம் - பாரதியார்",
+        "தாய்மொழிப் பற்று மிக முக்கியம் - அறிஞர் அண்ணா",
+        "வருமுன்னர்க் காவாதான் வாழ்க்கை - திருவள்ளுவர்",
+        "நன்றி மறவேல் - ஔவையார்",
+        "சென்றிடுவீர் எட்டுத் திக்கும் - பாரதியார்",
+      ];
+      function randomQuote() {
+        randomQuoteEl.innerHTML = "";
+
+        let random = Math.floor(Math.random() * quotes.length);
+        let Quote = quotes[random];
+
+        let textEl = document.createElement("p");
+        textEl.className =
+          "text-gray-700 font-semibold  text-preety p-5 rounded-lg transition-all ease-out  delay-900 ";
+        textEl.innerText = `${Quote}`;
+
+        randomQuoteEl.append(textEl);
+
+        randomQuoteEl.classList.remove("hidden")
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM | Search</title>
+    <!-- tailwindcss -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- fontawsome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Griffy&display=swap"
+      rel="stylesheet" />
+  </head>
+  <body class="bg-blue-900">
+    <div class="max-w-lg text-center border-2 border-blue-600 mx-auto rounded-lg">
+      <div class="bg-blue-300 rounded-lg">
+        <h1 class="text-2xl font-bold p-10">Electronic Items List</h1>
+        <div>
+          <input
+            type="search"
+            name="search"
+            id="search"
+            class="bg-white rounded-lg my-5 w-[300px] py-2 outline-2 outline-blue-500 px-2 border-blue-700 placeholder:text-center"
+            placeholder=" Tap to 🔍Search" />
+        </div>
+        <div>
+          <ul id="electronicItemsList"></ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let searchEl = document.getElementById("search");
+      let electronicItemsListEl = document.getElementById(
+        "electronicItemsList",
+      );
+
+      const electronicItems = [
+        "USB Cable",
+        "Power Bank",
+        "Earphones",
+        "Bluetooth Speaker",
+        "Wireless Mouse",
+        "Keyboard",
+        "LED Desk Lamp",
+        "Phone Case",
+        "Screen Protector",
+        "USB Hub",
+        "SD Card",
+        "Stylus Pen",
+        "Wall Charger",
+        "Bluetooth Tracker",
+        "Webcam",
+        "Mini Fan",
+        "HDMI Cable",
+        "Headphone Stand",
+        "Smart Plug",
+        "Cable Organizer",
+      ];
+
+      // using foreach to get product-list
+      electronicItems.forEach((item) => {
+        const liEl = document.createElement("li");
+        liEl.className =
+          " border p-2 m-2 rounded-lg bg-white hover:bg-gray-100 inline-block";
+        liEl.textContent = item;
+        electronicItemsListEl.append(liEl);
+      });
+
+      // search operation
+      searchEl.addEventListener("input", () => {
+        const filterEl = searchEl.value.toLowerCase();
+        const listItems = electronicItemsListEl.querySelectorAll("li");
+
+        listItems.forEach((li) => {
+          const listEl = li.textContent.toLowerCase();
+
+          let valueEl = listEl.includes(filterEl);
+          if (valueEl) {
+            li.classList.replace("hidden", "inline-block");
+          }
+          //else if (!valueEl) {
+          //   const li = document.createElement("li");
+          //   li.textContent = "No results found ❌";
+          //   li.className = " text-black font-medium px-6 py-3 rounded mx-auto";
+          //   li.classList.replace("inline-block", "hidden");
+
+          //   electronicItemsListEl.append(li);
+          // }
+          else {
+            li.classList.replace("inline-block", "hidden");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
