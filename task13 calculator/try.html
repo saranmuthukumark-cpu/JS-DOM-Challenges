@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Calculator IOS</title>
+    <!-- fontawsome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+  </head>
+  <body class="bg-gray-900 flex items-center justify-center min-h-screen">
+    <div
+      class="bg-black w-80 h-[600px] rounded-[40px] p-6 shadow-2xl flex flex-col border-4 border-gray-800">
+      <div class="flex-grow flex items-end justify-end pb-7 overflow-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ">
+        <input 
+        type="text"
+          class="text-white text-7xl font-medium tracking-tight bg-transparent "
+          id="ans">
+          0
+        </input>
+      </div>
+
+      <div class="grid grid-cols-4 gap-3">
+        <!-- 1 -->
+        <button
+          id="num"
+        
+          class="w-16 h-16 rounded-full bg-gray-500 active:bg-slate-700 text-black text-2xl font-medium hover:bg-gray-400 transition">
+          <i class="fa-solid fa-delete-left"></i>
+        </button>
+        <button
+          id="num"
+          value="AC"
+          class="w-16 h-16 rounded-full bg-gray-500 active:bg-slate-700 text-black text-2xl font-medium hover:bg-gray-400 transition">
+          AC
+        </button>
+        <button
+          id="num"
+          value="%"
+          class="w-16 h-16 rounded-full bg-gray-500 active:bg-slate-700 text-black text-2xl font-medium hover:bg-gray-400 transition">
+          %
+        </button>
+        <button
+
+          id="num"
+          value=""
+          class="w-16 h-16 rounded-full bg-orange-500 text-white text-3xl font-medium active:bg-orange-600 hover:bg-orange-400 transition">
+          ÷
+        </button>
+
+        <!-- 2 -->
+        <button
+          id="num"
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          7
+        </button>
+        <button
+          id="num"
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          8
+        </button>
+        <button
+          id="num"
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          9
+        </button>
+        <button
+          id="num"
+          class="w-16 h-16 rounded-full bg-orange-500 text-white text-3xl font-medium active:bg-orange-600 hover:bg-orange-400 transition">
+          ×
+        </button>
+
+        <!-- 3 -->
+        <button
+          id="num"
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          4
+        </button>
+        <button
+          id="num"
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          5
+        </button>
+        <button
+          id="num"
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          6
+        </button>
+        <button
+          id="num"
+          class="w-16 h-16 rounded-full bg-orange-500 text-white text-4xl font-medium active:bg-orange-600 hover:bg-orange-400 transition">
+          −
+        </button>
+
+        <!--  4 -->
+        <button
+          id="num"
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          1
+        </button>
+        <button
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          2
+        </button>
+        <button
+          id="num"
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          3
+        </button>
+        <button
+          class="w-16 h-16 rounded-full bg-orange-500 text-white text-3xl font-medium active:bg-orange-600 hover:bg-orange-400 transition">
+          +
+        </button>
+
+        <!-- 5 -->
+        <button
+          id="num"
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          0
+        </button>
+        <button
+          id="num"
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          .
+        </button>
+        <button
+          id="num"
+          onclick="eval()"
+          class="w-full h-16 col-span-2 rounded-3xl bg-orange-500 text-white text-3xl font-medium active:bg-orange-600 hover:bg-orange-400 transition">
+          =
+        </button>
+      </div>
+    </div>
+    <!-- <script>
+      let ansEl = document.querySelector("input");
+      let numEl = document.querySelectorAll("button");
+
+      numEl.forEach((number) => {
+        number.onclick = () => {
+          ansEl.innerText.value += number.innerText.value;
+          console.log(number);
+        };
+      });
+    </script> -->
+  </body>
+</html>

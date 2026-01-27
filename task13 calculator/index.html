@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Calculator IOS</title>
+    <!-- fontawsome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+  </head>
+  <body class="bg-gray-900 flex items-center justify-center min-h-screen">
+    <!-- password -->
+    <div
+      id="lockScreen"
+      class="bg-black w-80 h-[600px] rounded-[40px] p-6 shadow-2xl flex flex-col items-center justify-center">
+      <h2 class="text-white text-2xl mb-6">Enter Password</h2>
+
+      <input
+        id="password"
+        type="password"
+        placeholder="••••"
+        maxlength="4"
+        max="4"
+        class="bg-gray-800 text-white text-xl px-4 py-3 rounded-lg text-center outline-none mb-4 w-48" />
+
+      <button
+        id="passBtn"
+        onclick="unlock()"
+        class="bg-orange-500 text-white px-6 py-3 rounded-full text-lg hover:bg-orange-400">
+        ✅
+      </button>
+    </div>
+
+    <!-- ..calculator.. -->
+
+    <div
+      id="calculator"
+      class="bg-black w-80 h-[600px] rounded-[40px] p-6 mt-5 shadow-2xl flex-col border-4 border-gray-800 hidden">
+      <div class="flex-grow flex items-end justify-end pb-5 overflow-auto">
+        <input
+          type="text"
+          id="ans"
+          value="0"
+          readonly
+          class="text-white text-5xl font-medium tracking-tight bg-transparent text-right w-full outline-none" />
+      </div>
+
+      <div class="grid grid-cols-4 gap-3 mt-10">
+        <!-- 1 -->
+        <button
+          class="w-16 h-16 rounded-full bg-gray-500 active:bg-slate-700 text-black text-2xl font-medium hover:bg-gray-400 transition">
+          <i class="fa-solid fa-delete-left"></i>
+        </button>
+        <button
+          value="AC"
+          class="w-16 h-16 rounded-full bg-gray-500 active:bg-slate-700 text-black text-2xl font-medium hover:bg-gray-400 transition">
+          AC
+        </button>
+        <button
+          value="%"
+          class="w-16 h-16 rounded-full bg-gray-500 active:bg-slate-700 text-black text-2xl font-medium hover:bg-gray-400 transition">
+          %
+        </button>
+        <button
+          value=""
+          class="w-16 h-16 rounded-full bg-orange-500 text-white text-3xl font-medium active:bg-orange-600 hover:bg-orange-400 transition">
+          ÷
+        </button>
+
+        <!-- 2 -->
+        <button
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          7
+        </button>
+        <button
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          8
+        </button>
+        <button
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          9
+        </button>
+        <button
+          class="w-16 h-16 rounded-full bg-orange-500 text-white text-3xl font-medium active:bg-orange-600 hover:bg-orange-400 transition">
+          ×
+        </button>
+
+        <!-- 3 -->
+        <button
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          4
+        </button>
+        <button
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          5
+        </button>
+        <button
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          6
+        </button>
+        <button
+          class="w-16 h-16 rounded-full bg-orange-500 text-white text-4xl font-medium active:bg-orange-600 hover:bg-orange-400 transition">
+          −
+        </button>
+
+        <!--  4 -->
+        <button
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          1
+        </button>
+        <button
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          2
+        </button>
+        <button
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          3
+        </button>
+        <button
+          class="w-16 h-16 rounded-full bg-orange-500 text-white text-3xl font-medium active:bg-orange-600 hover:bg-orange-400 transition">
+          +
+        </button>
+
+        <!-- 5 -->
+        <button
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          0
+        </button>
+        <button
+          class="w-16 h-16 rounded-full bg-zinc-800 text-white text-3xl font-normal active:bg-gray-900 hover:bg-zinc-700 transition">
+          .
+        </button>
+        <button
+          class="w-full h-16 col-span-2 rounded-3xl bg-orange-500 text-white text-3xl font-medium active:bg-orange-600 hover:bg-orange-400 transition">
+          =
+        </button>
+      </div>
+    </div>
+    <script>
+      const display = document.getElementById("ans");
+      const buttons = document.querySelectorAll(" #calculator button");
+
+      let result = "";
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const value = btn.textContent.trim();
+
+          // ac btn
+          if (value === "AC") {
+            result = "";
+            display.value = "0";
+            return;
+          }
+
+          // delete btn
+          if (btn.querySelector("i")) {
+            result = result.slice(0, -1);
+            display.value = result || "0";
+            return;
+          }
+
+          // equal bttn
+          if (value === "=") {
+            try {
+              result = result
+                .replace("×", "*")
+                .replace("÷", "/")
+                .replace("−", "-");
+
+              result = eval(result).toString();
+              display.value = result;
+            } catch {
+              display.value = "Error";
+              result = "";
+            }
+            return;
+          }
+
+          //  zeros
+          if (result === "0" && value === "0") return;
+
+          // append value
+          result += value;
+          display.value = result;
+        });
+      });
+
+      ///password
+
+      function unlock() {
+        const password = document.getElementById("password").value;
+        const lock = document.getElementById("lockScreen");
+        const calculator = document.getElementById("calculator");
+        const passBtnEl = document.getElementById("passBtn");
+
+        if (password === "1111") {
+          lock.classList.add("hidden");
+          calculator.classList.remove("hidden");
+          passBtnEl.classList.add("hidden");
+        } else {
+          alert("Incorrect Password ❌");
+        }
+      }
+    </script>
+  </body>
+</html>
