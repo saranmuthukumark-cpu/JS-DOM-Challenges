@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GIT | Profile Finder</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- fontawsome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+  </head>
+  <body class="bg-gray-900">
+    <div>
+      <div class="flex justify-center items-center my-10">
+        <h1
+          class="bg-linear-65 from-purple-500 to-pink-500 text-4xl font-bold text-transparent bg-clip-text mx-auto">
+          <i>
+            Developer Profile
+            <span class="font-extrabold text-4xl">Finder</span></i
+          >
+        </h1>
+      </div>
+      <div class="w-full flex justify-center">
+        <input
+          id="userName"
+          type="text"
+          class="p-3 outline-none bg-gray-300 rounded-full mx-2"
+          placeholder="Git Profile Name" />
+        <button
+          id="searchBtn"
+          class="bg-violet-400 p-2 rounded-full px-6 text-2xl">
+          🔍
+        </button>
+      </div>
+    </div>
+
+    <!-- result -->
+    <div id="profile" class="flex justify-center p-5"></div>
+
+    <script>
+      //getting
+      let userNameEl = document.getElementById("userName");
+      let searchBtnEl = document.getElementById("searchBtn");
+      let profile = document.getElementById("profile");
+
+      searchBtnEl.addEventListener("click", showProfile);
+      //function
+      async function showProfile() {
+        let userName = userNameEl.value.trim();
+
+        if (userName === "") {
+          alert("Please Enter a username");
+          throw new Error("User Name Not Found!");
+          return;
+        }
+        //loading
+        profile.innerHTML = `
+  <div class="flex items-center gap-2 text-gray-300">
+    <i class="fa-solid fa-spinner animate-spin"></i>
+    <span>Loading...</span>
+  </div>
+`;
+        //api
+        let url = "https://api.github.com/users/" + userName;
+
+        try {
+          const result = await fetch(url);
+          const userData = await result.json();
+
+          if (userData.message === "Not Found") {
+            profile.innerHTML = `
+                <p class="text-gray-300 mt-10 text-center text-3xl flex items-center gap-2">
+                  Oops! Profile not found <picture>
+        <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f622/512.webp" type="image/webp">
+        <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f622/512.gif" alt="😢" width="50" height="50">
+      </picture></p>`;
+            return;
+          }
+          // display user data
+          profile.innerHTML = `
+                <div class="flex flex-col  items-center bg-slate-200 p-5 rounded-lg border-4 border-gray-600 ">
+
+                  <img src="${userData.avatar_url}"
+                       class="w-30 h-30 rounded-full border-4 border-violet-500 mb-4" />
+
+                  <h1 class="text-xl font-bold">${userData.name}</h1>
+                  <p class="text-gray-500">@${userData.login}</p>
+
+                  <div class="flex gap-4 mt-4 text-sm">
+                    <div class="flex gap-1">
+                      <p class="font-bold">${userData.followers}</p>
+                      <p class="text-gray-500">Followers</p>
+                    </div>
+                    <div class="flex gap-1" >
+                      <p class="font-bold">${userData.following}</p>
+                      <p class="text-gray-500">Following</p>
+                    </div>
+                    <div  class="flex gap-1" >
+                      <p class="font-bold">${userData.public_repos}</p>
+                      <p class="text-gray-500">Repo</p>
+                    </div>
+                  </div>
+                  <a href="${userData.html_url}" target="_blank"
+                     class="mt-5 inline-block px-5 py-2 bg-black text-white bg-violet-500  rounded-full hover:bg-violet-800">
+                     View Profile
+                  </a>
+
+                </div>`;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    </script>
+  </body>
+</html>
