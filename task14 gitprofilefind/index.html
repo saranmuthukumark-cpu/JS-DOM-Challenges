@@ -37,16 +37,27 @@
           🔍
         </button>
       </div>
+      .
     </div>
 
     <!-- result -->
-    <div id="profile" class="flex justify-center p-5"></div>
-
+    <div id="profile" class="flex justify-center p-5 w-full mx-auto mt-5"></div>
+    <div id="repoDiv" class="hidden">
+      <h1 class="bg-linear-65 from-purple-500 to-pink-500 text-4xl font-bold text-transparent bg-clip-text mx-auto text-center mb-5">
+         Top 10 Repos
+      </h1>
+    <div
+      id="repo"
+      class="grid grid-cols-2 max-sm:grid-cols-1 mx-auto items-center bg-slate-200 p-5 rounded-xl border-4 border-gray-600 w-[40%] ">
+    </div>
+</div>
     <script>
       //getting
       let userNameEl = document.getElementById("userName");
       let searchBtnEl = document.getElementById("searchBtn");
       let profile = document.getElementById("profile");
+      let repoEl = document.getElementById("repo");
+      let repoDiv = document.getElementById("repoDiv");
 
       searchBtnEl.addEventListener("click", showProfile);
       //function
@@ -58,6 +69,7 @@
           throw new Error("User Name Not Found!");
           return;
         }
+
         //loading
         profile.innerHTML = `
   <div class="flex items-center gap-2 text-gray-300">
@@ -67,10 +79,39 @@
 `;
         //api
         let url = "https://api.github.com/users/" + userName;
+        let secondUrl = "https://api.github.com/users/" + userName + "/repos";
 
         try {
           const result = await fetch(url);
           const userData = await result.json();
+        
+          setTimeout(() => {
+              repoDiv.classList.remove("hidden")
+          }, 350);
+        
+
+          let res = await fetch(secondUrl);
+          let userRepo = await res.json();
+          console.log(userRepo);
+
+          userRepo = userRepo.slice(0, 10);
+
+          userRepo.forEach((repo) => {
+            
+            const liEl = document.createElement("a");
+            liEl.className =
+              "border p-2 m-2 bg-violet-400 rounded-full  list-none hover:bg-violet-100";
+            liEl.href = repo.html_url;
+            liEl.target = "_blank";
+            liEl.textContent = repo.name;
+            repoEl.append(liEl);
+            console.log(liEl);
+          });
+
+          if (result.status === 403) {
+            alert("API Limit has reached");
+            return;
+          }
 
           if (userData.message === "Not Found") {
             profile.innerHTML = `
@@ -83,34 +124,53 @@
           }
           // display user data
           profile.innerHTML = `
-                <div class="flex flex-col  items-center bg-slate-200 p-5 rounded-lg border-4 border-gray-600 ">
-
-                  <img src="${userData.avatar_url}"
-                       class="w-30 h-30 rounded-full border-4 border-violet-500 mb-4" />
-
+                <div class="flex flex-col  items-center bg-slate-200 p-5 rounded-xl border-4 border-gray-600 w-[40%] max-sm:w-[20%]  ">
+<div class="flex gap-10 items-center">
+  <div><img src="${userData.avatar_url}"
+                       class="w-30 h-30 rounded-full border-4 border-violet-500 mb-4 shadow-lg shadow-violet-700 max-sm:w-20  max-sm:h-20" /></div>
+  <div>
                   <h1 class="text-xl font-bold">${userData.name}</h1>
-                  <p class="text-gray-500">@${userData.login}</p>
+                  <p class="text-gray-500 font-medium">@${userData.login}</p>
+                      <p class="text-gray-500 font-medium">📍${userData.location}</p>    
+                      <p class="text-gray-500 font-medium">📧${userData.email}</p></div>
+  
+  </div>
+                  
+
 
                   <div class="flex gap-4 mt-4 text-sm">
                     <div class="flex gap-1">
-                      <p class="font-bold">${userData.followers}</p>
-                      <p class="text-gray-500">Followers</p>
+                      <p class="font-bold bg-violet-300 px-2  rounded-full ">${userData.followers}</p>
+                      <p class="text-gray-500 font-medium ">Followers</p>
                     </div>
                     <div class="flex gap-1" >
-                      <p class="font-bold">${userData.following}</p>
-                      <p class="text-gray-500">Following</p>
+                      <p class="font-bold bg-violet-300 px-2  rounded-full">${userData.following}</p>
+                      <p class="text-gray-500 font-medium">Following</p>
                     </div>
                     <div  class="flex gap-1" >
-                      <p class="font-bold">${userData.public_repos}</p>
-                      <p class="text-gray-500">Repo</p>
+                      <p class="font-bold bg-violet-300 px-2  rounded-full ">${userData.public_repos}</p>
+                      <p class="text-gray-500 font-medium ">Repo</p>
                     </div>
                   </div>
+                  <div  class="flex justify-around gap-5 mt-4" >
+                    <div class="flex" >   <p class="text-gray-500 pr-1"> Joined At: </p>
+                      <p class="font-bold"> ${new Date(userData.created_at).getFullYear()}/</p>
+                      <p class="font-bold"> ${new Date(userData.created_at).getMonth()}/</p>
+                      <p class="font-bold"> ${new Date(userData.created_at).getDate()}</p>
+                        </div>
+                        <div class="flex">   <p class="text-gray-500 pr-1"> Last Modified At: </p>
+                      <p class="font-bold"> ${new Date(userData.updated_at).getFullYear()}/</p>
+                      <p class="font-bold"> ${new Date(userData.updated_at).getMonth()}/</p>
+                      <p class="font-bold"> ${new Date(userData.updated_at).getDate()}</p>
+                        </div>
+                
+                    </div>
+                  
                   <a href="${userData.html_url}" target="_blank"
                      class="mt-5 inline-block px-5 py-2 bg-black text-white bg-violet-500  rounded-full hover:bg-violet-800">
                      View Profile
                   </a>
-
-                </div>`;
+    </div>`;
         } catch (error) {
           console.error(error);
         }
