@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Website Price Calculator</title>
+       <!-- tailwindcss -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+       <!-- fontawsome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+</head>
+<body class="bg-[#210d43]">
+     <nav>
+     <div class="flex justify-between px-30 py-3 text-white bg-gradient-to-r from-indigo-700 via-purple-600 to-indigo-700 shadow-lg sticky top-0  ">
+<div><a href="#"><img src="./cdn-white.svg" alt="Cdn-logo" class="w-30"></a></div>
+<div class="flex gap-10 items-center">
+     <div>
+     <a href="./price.html"><h1 class="font-semibold hover:scale-110 hover:bg-violet-900 px-2 py-1 rounded-lg">Pricing</h1></a>
+</div>
+<div>
+     <a href="./index.html"><h1 class="font-semibold border-2 border-violet-600 rounded-lg px-2 py-1 bg-violet-950 hover:scale-110 ">Back</h1>
+</div></a>
+
+</div>
+
+
+
+     </div>
+     </nav>
+     <!-- quote page -->
+
+<section class="  rounded-2xl mt-10  " id="form">
+     <div class="max-w-2xl border-2 border-violet-700 px-15 py-5 mx-auto rounded-lg  bg-violet-200">
+          <h1 class="mb-5 text-center text-2xl font-bold">Get your Quotation</h1>
+
+  <!-- Name -->
+
+  <div>
+    <label class="block mb-2 text-sm font-bold text-gray-700">
+      Your Name:
+    </label>
+    <input type="text"
+      required
+     id="userName"
+      class="w-full rounded-xl border border-gray-700 px-4 py-3
+             focus:border-violet-500  outline-none">
+  </div>
+
+  <!-- Brand & Logo -->
+  <div class="flex items-center gap-4 mt-3">
+    <label class="text-sm font-bold text-gray-700">
+      Do you want Own Brand & Logo:
+    </label>
+    <label class="flex items-center gap-2 text-sm cursor-pointer">
+      <input type="checkbox" value="1000" days="2"
+        class="rounded border-gray-700 text-violet-600">
+      yes
+    </label>
+  </div>
+
+  <!-- Business Type -->
+  <div class="mt-3">
+    <label class="block mb-2 text-sm font-bold text-gray-700">
+      Business Type:
+    </label>
+    <select class="w-full rounded-xl border border-gray-700 px-4 py-3
+                                 focus:border-violet-500 ">
+      <option value="0">Business Type</option>
+      <option value="3000" days="3">Local Business</option>
+<option value="6000" days="5">Startup</option>
+<option value="10000" days="7">Enterprise</option>
+
+    </select>
+  </div>
+
+  <!-- Website Type -->
+  <div class="mt-3" >
+    <label class="block mb-2 text-sm font-bold text-gray-700">
+      Website Type:
+    </label>
+    <select  class="w-full rounded-xl border border-gray-700 px-4 py-3
+                                 focus:border-violet-500 ">
+      <option value="0">Website Type</option>
+      <option value="3000">Static Information</option>
+      <option value="6000">Corporate Website</option>
+      <option value="2000">One Page Site</option>
+      <option value="10000">E-Commerce</option>
+    </select>
+  </div>
+
+  <!-- Pages Range -->
+  <div  class="mt-3" >
+    <label class="block mb-2 text-sm font-bold text-gray-700">
+      Number of Pages
+    </label>
+    <input type="range" min="1" max="50" value="1" id="pages"
+      class="w-full accent-violet-600">
+    <p class="text-sm text-gray-500 mt-1">
+      Pages: <span id="pageVal">5</span>
+    </p>
+  </div>
+
+  <!-- Design Preference -->
+  <div  class="mt-3" >
+    <label class="block mb-2 text-sm font-bold text-gray-700">
+      Design Preference:
+    </label>
+    <select  class="w-full rounded-xl border border-gray-700 px-4 py-3
+                                 focus:border-violet-500 -violet-200">
+      <option value="0">Design Preference</option>
+      <option value="3000">Basic</option>
+      <option value="6000">Professional</option>
+      <option value="8000">Premium</option>
+      <option value="10000">Creative</option>
+    </select>
+  </div>
+
+  <!-- Domain & Hosting -->
+  <div class="grid sm:grid-cols-2 gap-6 mt-3">
+    <label class="flex items-center gap-2 text-sm font-medium text-gray-700 cursor-pointer">
+      <input type="checkbox" value="1000" days="2"
+        class="rounded border-gray-300 text-violet-600-violet-500">
+      Do you want Domain
+    </label>
+
+    <label class="flex items-center gap-2 text-sm font-medium text-gray-700 cursor-pointer">
+      <input type="checkbox" value="4000" days="2"
+        class="rounded border-gray-300 text-violet-600-violet-500">
+      Do you want Hosting
+    </label>
+  </div>
+
+  <!-- Pages -->
+  <div class="mt-3" >
+    <h1 class="mb-4 text-sm font-bold text-gray-700">
+      Pages you need:
+    </h1>
+
+    <ul class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm mt-3" id="check">
+      <li class=""><input type="checkbox" value="1000"> Home</li>
+      <li class=""><input type="checkbox" value="1000"> About Us</li>
+      <li class=""><input type="checkbox" value="1000"> Contact Us</li>
+      <li class=""><input type="checkbox" value="1000"> Services</li>
+      <li class=""><input type="checkbox" value="1000"> Career</li>
+      <li class=""><input type="checkbox" value="1000"> Gallery</li>
+      <li class=""><input type="checkbox" value="1000"> Products</li>
+      <li class=""><input type="checkbox" value="1000"> Product Detail</li>
+      <li class=""><input type="checkbox" value="1000"> Portfolio</li>
+      <li class=""><input type="checkbox" value="1000"> Media</li>
+      <li class=""><input type="checkbox" value="1000"> Testimonial</li>
+      <li class=""><input type="checkbox" value="1000"> Clients</li>
+      <li class=""><input type="checkbox" value="1000"> Enquiry</li>
+      <li class=""><input type="checkbox" value="1000"> Get A Quote</li>
+      <li class=""><input type="checkbox" value="1000"> Blog</li>
+      <li class=""><input type="checkbox" value="1000"> Vision Page</li>
+      <li class=""><input type="checkbox" value="1000"> Mission Page</li>
+      <li class=""><input type="checkbox" value="1000"> Team</li>
+      <li class=""><input type="checkbox" value="1000"> FAQ's</li>
+      <li class=""><input type="checkbox" value="1000"> News</li>
+      <li class=""><input type="checkbox" value="1000"> Events</li>
+      <li class=""><input type="checkbox" value="1000"> Awards</li>
+      <li class=""><input type="checkbox" value="1000"> Achievement</li>
+      <li class=""><input type="checkbox" value="1000"> CSR</li>
+      <li class=""><input type="checkbox" value="1000"> Terms & Conditions</li>
+      <li class=""><input type="checkbox" value="1000"> Privacy Policy</li>
+      <li class=""><input type="checkbox" value="1000"> Refund Policy</li>
+      <li class=""><input type="checkbox" value="1000"> Cancellation Policy</li>
+      <li class=""><input type="checkbox" value="1000"> Studies</li>
+      <li class=""><input type="checkbox" value="1000"> Industries</li>
+      <li class=""><input type="checkbox" value="1000"> Site Map</li>
+      <li class=""><input type="checkbox" value="1000"> Complaint</li>
+    </ul>
+  </div>
+
+  <!-- Special Requirements -->
+  <div class="mt-3" >
+    <h1 class="mb-4 text-sm font-bold text-gray-700">
+      Special Requirement:
+    </h1>
+
+    <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+      <li class=""><input type="checkbox" value="1000"> Google Map</li>
+      <li class=""><input type="checkbox" value="5000"> SEO</li>
+      <li class=""><input type="checkbox" value="1000"> Whatsapp Chat</li>
+      <li class=""><input type="checkbox" value="1000"> Notifications</li>
+      <li class=""><input type="checkbox" value="1000"> Social Media Linking</li>
+      <li class=""><input type="checkbox" value="1000"> Admin Panel</li>
+      <li class=""><input type="checkbox" value="1000"> Content Writing</li>
+    </ul>
+  </div>
+
+  <!-- Delivery Preference -->
+  <div class="mt-3" >
+    <label class="block mb-2 text-sm font-bold text-gray-700">
+      Delivery Preference:
+    </label>
+    <select id="business" class="w-full rounded-xl border border-gray-700 px-4 py-3
+                                 focus:border-violet-500 ">
+      <option value="0">Delivery Preference</option>
+      <option value="1000">Normal</option>
+      <option value="4000">Faster</option>
+    </select>
+  </div>
+  <div class="mt-3"><button class="w-full p-3 rounded-full bg-violet-600 text-white" onclick="generateEstimate()" >Generate</button></div>
+</div>
+</section>
+
+<!-- Output -->
+<div id="output"
+     class="hidden mt-6 p-6 rounded-2xl max-w-2xl mx-auto bg-[#F5F3FF] border border-violet-200">
+<div class="flex justify-between">
+  <div><h2 id="greet"
+      class="text-xl font-bold text-violet-700 mb-4 text-center capitalize"> </h2></div>
+  <div class=""><span class="items-center "><a href="./quote.html">❌</a></span>
+</div>
+</div>
+  <div class="space-y-2 text-gray-700">
+    <p>Estimated Cost:
+      <span id="cost" class="font-semibold text-violet-600">₹0</span>
+    </p>
+
+    <p>Estimated Development Time:
+      <span id="days" class="font-semibold text-violet-600">0 days</span>
+    </p>
+
+    <p>Recommended Technology:
+      <span class="font-semibold text-violet-600">MERN Stack</span>
+      <span class="text-sm text-gray-500">(MongoDB, Express, React, Node.js)</span>
+    </p>
+    
+    <p class="text-white bg-violet-600 mx-auto py-2 text-center rounded-full w-40 mt-5"><a href="https://cyberdudenetworks.com/contact-us">Contact Now</a></p>
+   
+  </div>
+
+</div>
+
+<script>
+//pages 
+let pagesEl = document.getElementById("pages");
+let pageValEl = document.getElementById("pageVal");
+
+pagesEl.addEventListener("input", () => {
+  pageValEl.innerText = pagesEl.value;
+});
+     
+
+function generateEstimate() {
+  let totalCost = 0;
+  let totalDays = 0;
+
+  let nameEl = document.getElementById("userName").value.trim();
+  let outputEl = document.getElementById("output");
+  let greetEl = document.getElementById("greet");
+  let formEl = document.getElementById("form");
+  let selectEl = document.querySelectorAll("select");
+  let inputEl = document.querySelectorAll("input[type='checkbox']:checked");
+  let costEl = document.getElementById("cost");
+  let daysEl = document.getElementById("days");
+  let pages = document.getElementById("pages");
+
+
+
+
+
+
+  formEl.classList.add("hidden")
+
+  if (nameEl === "") {
+    greetEl.innerHTML = "👋 Hello! Let’s Estimate your Website  ";
+  } else {
+    greetEl.innerHTML = `👋 Hello <span class="font-bold text-2xl">${nameEl}</span>, here’s your website Estimation`;
+  }
+  selectEl.forEach(select => {
+    totalCost += Number(select.value);
+  });
+  inputEl.forEach(box => {
+    totalCost += Number(box.value);
+    totalDays += Number(box.getAttribute("days"));
+  });
+
+  if (pages) {
+    totalCost += Number(pages.value) * 1000;
+    totalDays += Number(pages.value) * 1;
+  }
+  costEl.innerText = "₹" + totalCost;
+  daysEl.innerText = totalDays + " days";
+
+  outputEl.classList.remove("hidden");
+}
+</script>
+
+    
+</body>
+</html>
