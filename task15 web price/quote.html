@@ -244,6 +244,7 @@
 </div>
 
 <script>
+  
 //pages 
 let pagesEl = document.getElementById("pages");
 let pageValEl = document.getElementById("pageVal");
@@ -269,9 +270,6 @@ function generateEstimate() {
 
 
 
-
-
-
   formEl.classList.add("hidden")
 
   if (nameEl === "") {
@@ -292,7 +290,7 @@ function generateEstimate() {
     totalDays += Number(pages.value) * 1;
   }
   costEl.innerText = "₹" + totalCost;
-  daysEl.innerText = totalDays + " days";
+  daysEl.innerText = totalDays + "days";
 
   outputEl.classList.remove("hidden");
 }

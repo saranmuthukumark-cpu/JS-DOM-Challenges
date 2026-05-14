@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Restaurant Bill Splitter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-md">
+    <h1 class="text-2xl font-bold text-center mb-6">
+      🍽️ Restaurant Bill Splitter
+    </h1>
+
+    <!-- Bill Amount -->
+    <div class="mb-4">
+      <label class="block mb-1 font-semibold">Bill Amount (₹)</label>
+      <input id="billAmount" type="number" placeholder="Enter bill amount"
+        class="w-full p-2 border rounded-lg" />
+    </div>
+
+    <!-- Tip Percentage -->
+    <div class="mb-4">
+      <label class="block mb-1 font-semibold">Tip (%)</label>
+      <input id="tipPercent" type="number" placeholder="e.g. 10"
+        class="w-full p-2 border rounded-lg" />
+    </div>
+
+    <!-- Tax Percentage -->
+    <div class="mb-4">
+      <label class="block mb-1 font-semibold">Tax (%)</label>
+      <input id="taxPercent" type="number" placeholder="e.g. 5"
+        class="w-full p-2 border rounded-lg" />
+    </div>
+
+    <!-- Number of People -->
+    <div class="mb-4">
+      <label class="block mb-1 font-semibold">Number of People</label>
+      <input id="peopleCount" type="number" placeholder="e.g. 4"
+        class="w-full p-2 border rounded-lg" />
+    </div>
+
+    <!-- Button -->
+    <button id="calculateBtn"
+      class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">
+      Calculate Split
+    </button>
+
+    <!-- Result -->
+    <div class="mt-6 text-center hidden" id="result">
+      <p class="text-lg font-semibold">Total Bill: ₹<span id="totalBill">0</span></p>
+      <p class="text-lg font-semibold mt-2">
+        Per Person: ₹<span id="perPerson">0</span>
+      </p>
+    </div>
+  </div>
+
+  <script>
+const billAmountEl = document.getElementById("billAmount");
+const tipPercentEl = document.getElementById("tipPercent");
+const taxPercentEl = document.getElementById("taxPercent");
+const peopleCountEl = document.getElementById("peopleCount");
+const calculateBtn = document.getElementById("calculateBtn");
+
+const totalBillEl = document.getElementById("totalBill");
+const perPersonEl = document.getElementById("perPerson");
+const resultEl = document.getElementById("result");
+
+calculateBtn.addEventListener("click", () => {
+  const bill = parseFloat(billAmountEl.value);
+  const tip = parseFloat(tipPercentEl.value) || 0;
+  const tax = parseFloat(taxPercentEl.value) || 0;
+  const people = parseInt(peopleCountEl.value);
+
+  if (!bill || bill <= 0 || !people || people <= 0) {
+    alert("Please enter valid bill amount and number of people");
+    return;
+  }
+
+  const tipAmount = (bill * tip) / 100;
+  const taxAmount = (bill * tax) / 100;
+
+  const totalBill = bill + tipAmount + taxAmount;
+  const perPerson = totalBill / people;
+
+  totalBillEl.textContent = totalBill.toFixed(2);
+  perPersonEl.textContent = perPerson.toFixed(2);
+
+  resultEl.classList.remove("hidden");
+});
+
+  </script>
+</body>
+</html>

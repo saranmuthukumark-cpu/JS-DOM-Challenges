@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Bill Splitter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body
+    class="bg-gradient-to-br from-orange-0 to-amber-50 min-h-screen py-8 px-4">
+    <div class="max-w-2xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">🍽️ Bill Splitter</h1>
+        <p class="text-gray-600">Divide the bill fairly among friends</p>
+      </div>
+
+      <!-- Card -->
+      <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
+        <!-- Bill -->
+        <div class="mb-6">
+          <label class="block font-semibold mb-2">Bill Amount (₹)</label>
+          <input
+            id="bill"
+            type="number"
+            class="w-full px-4 py-3 border-2 rounded-lg text-lg"
+            oninput="calculate()" />
+        </div>
+
+        <!-- People -->
+        <div class="mb-6">
+          <label class="block font-semibold mb-2">Number of People</label>
+
+          <div class="flex items-center gap-3">
+            <button
+              onclick="decreasePeople()"
+              class="w-12 h-12 bg-orange-500 text-white rounded-lg text-xl font-bold">
+              −
+            </button>
+
+            <input
+              id="people"
+              type="number"
+              value="2"
+              min="1"
+              class="flex-1 px-4 py-3 border-2 rounded-lg text-lg text-center font-semibold"
+              oninput="calculate()" />
+
+            <button
+              onclick="increasePeople()"
+              class="w-12 h-12 bg-orange-500 text-white rounded-lg text-xl font-bold">
+              +
+            </button>
+          </div>
+        </div>
+
+        <!-- Tax -->
+        <div class="mb-6">
+          <label class="font-semibold"
+            >Tax: <span id="taxLabel">8%</span></label
+          >
+          <input
+            id="tax"
+            type="range"
+            min="0"
+            max="20"
+            value="8"
+            class="w-full"
+            oninput="updateTax()" />
+        </div>
+
+        <!-- Tip -->
+        <div class="mb-6">
+          <label class="font-semibold"
+            >Tip: <span id="tipLabel">15%</span></label
+          >
+          <input
+            id="tip"
+            type="range"
+            min="0"
+            max="30"
+            value="15"
+            class="w-full"
+            oninput="updateTip()" />
+        </div>
+
+        <!-- result -->
+        <div class="border-t pt-4 space-y-2">
+          <p>Subtotal: <span id="subtotal">₹0.00</span></p>
+          <p>Tax: <span id="taxAmount">₹0.00</span></p>
+          <p>Tip: <span id="tipAmount">₹0.00</span></p>
+          <p class="font-bold text-lg">Total: <span id="total">₹0.00</span></p>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="bg-orange-500 text-white rounded-2xl p-6 text-center mb-6">
+        <p class="text-lg">Each Person Pays</p>
+        <p class="text-4xl font-bold" id="perPerson">₹0.00</p>
+        <p class="text-sm mt-2">
+          Split between <span id="count">2</span> people
+        </p>
+      </div>
+
+      <!-- Reset -->
+      <div class="text-center">
+        <button
+          onclick="resetCalculator()"
+          class="px-6 py-3 bg-white shadow-md rounded-lg font-semibold hover:bg-gray-100">
+          🔄 Reset Calculator
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function calculate() {
+        const bill = parseFloat(document.getElementById("bill").value) || 0;
+        const people = parseInt(document.getElementById("people").value) || 1;
+        const tax = parseFloat(document.getElementById("tax").value) || 0;
+        const tip = parseFloat(document.getElementById("tip").value) || 0;
+
+        const taxAmount = (bill * tax) / 100;
+        const tipAmount = (bill * tip) / 100;
+        const total = bill + taxAmount + tipAmount;
+        const perPerson = total / people;
+
+        document.getElementById("subtotal").textContent = `₹${bill.toFixed(2)}`;
+        document.getElementById("taxAmount").textContent =
+          `₹${taxAmount.toFixed(2)}`;
+        document.getElementById("tipAmount").textContent =
+          `₹${tipAmount.toFixed(2)}`;
+        document.getElementById("total").textContent = `₹${total.toFixed(2)}`;
+        document.getElementById("perPerson").textContent =
+          `₹${perPerson.toFixed(2)}`;
+        document.getElementById("count").textContent = people;
+      }
+
+      function increasePeople() {
+        const peopleInput = document.getElementById("people");
+        peopleInput.value = parseInt(peopleInput.value) + 1;
+        calculate();
+      }
+
+      function decreasePeople() {
+        const peopleInput = document.getElementById("people");
+        if (parseInt(peopleInput.value) > 1) {
+          peopleInput.value = parseInt(peopleInput.value) - 1;
+          calculate();
+        }
+      }
+
+      function updateTax() {
+        const tax = document.getElementById("tax").value;
+        document.getElementById("taxLabel").textContent = tax + "%";
+        calculate();
+      }
+
+      function updateTip() {
+        const tip = document.getElementById("tip").value;
+        document.getElementById("tipLabel").textContent = tip + "%";
+        calculate();
+      }
+
+      function resetCalculator() {
+        document.getElementById("bill").value = "";
+        document.getElementById("people").value = 2;
+        document.getElementById("tax").value = 8;
+        document.getElementById("tip").value = 15;
+
+        document.getElementById("taxLabel").textContent = "8%";
+        document.getElementById("tipLabel").textContent = "15%";
+
+        calculate();
+      }
+
+      calculate();
+    </script>
+  </body>
+</html>

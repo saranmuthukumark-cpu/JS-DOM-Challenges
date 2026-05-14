@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Smart Digital Alarm</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gray-900 min-h-screen flex items-center justify-center text-white ">
+    <div
+      class="bg-gray-800 p-6 rounded-xl shadow-lg w-full max-w-sm text-center   ">
+      <h1 class="text-2xl font-bold mb-4">⏰ Smart Digital Alarm</h1>
+
+      <!-- Live Clock -->
+      <div id="clock" class="text-4xl font-mono mb-6">00:00:00</div>
+
+      <!-- Alarm Input -->
+      <input
+        type="time"
+        id="alarmTime"
+        class="w-full p-2 text-black rounded mb-4" />
+
+      <!-- Button -->
+      <button
+        id="setAlarmBtn"
+        class="w-full bg-green-600 py-2 rounded hover:bg-green-700">
+        Set Alarm
+      </button>
+
+      <!-- Message -->
+      <p id="message" class="mt-4 text-green-400 hidden">
+        Alarm set successfully!
+      </p>
+    </div>
+
+    <audio id="alarmSound" src="alarm.mp3"></audio>
+
+    <script>
+      const clockEl = document.getElementById("clock");
+      const alarmInput = document.getElementById("alarmTime");
+      const setAlarmBtn = document.getElementById("setAlarmBtn");
+      const messageEl = document.getElementById("message");
+      const alarmSound = document.getElementById("alarmSound");
+
+      let alarmTime = null;
+      let alarmTriggered = false;
+
+      // Live Clock
+      setInterval(() => {
+        const now = new Date();
+
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const seconds = String(now.getSeconds()).padStart(2, "0");
+
+        const currentTime = `${hours}:${minutes}:${seconds}`;
+        clockEl.textContent = currentTime;
+
+        // Alarm check
+        if (alarmTime === `${hours}:${minutes}` && !alarmTriggered) {
+          alarmTriggered = true;
+          triggerAlarm();
+        }
+      }, 1000);
+
+      // Set Alarm
+      setAlarmBtn.addEventListener("click", () => {
+        if (!alarmInput.value) {
+          alert("Please set an alarm time");
+          return;
+        }
+
+        alarmTime = alarmInput.value;
+        alarmTriggered = false;
+        messageEl.classList.remove("hidden");
+      });
+
+      // Alarm Action
+      function triggerAlarm() {
+        document.body.classList.add("bg-red-700");
+        alarmSound.play();
+        alert("⏰ ALARM! Time's up!");
+      }
+    </script>
+  </body>
+</html>

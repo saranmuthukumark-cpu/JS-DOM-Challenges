@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Bill Splitter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-orange-50 to-amber-50 min-h-screen py-8 px-4">
+    <div class="max-w-2xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">🍽️ Bill Splitter</h1>
+            <p class="text-gray-600">Divide the bill fairly among friends</p>
+        </div>
+
+        <!-- Main Card -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-6">
+            <!-- Bill Amount -->
+            <div class="mb-6">
+                <label class="block text-gray-700 font-semibold mb-2">Bill Amount ($)</label>
+                <input 
+                    type="number" 
+                    id="billAmount" 
+                    placeholder="0.00" 
+                    step="0.01"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-orange-500 focus:outline-none text-lg"
+                    oninput="calculateBill()"
+                >
+            </div>
+
+            <!-- Number of People -->
+            <div class="mb-6">
+                <label class="block text-gray-700 font-semibold mb-2">Number of People</label>
+                <div class="flex items-center gap-3">
+                    <button 
+                        onclick="adjustPeople(-1)" 
+                        class="w-12 h-12 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-bold text-xl transition-colors"
+                    >
+                        -
+                    </button>
+                    <input 
+                        type="number" 
+                        id="numPeople" 
+                        value="2" 
+                        min="1"
+                        class="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-orange-500 focus:outline-none text-lg text-center font-semibold"
+                        oninput="calculateBill()"
+                    >
+                    <button 
+                        onclick="adjustPeople(1)" 
+                        class="w-12 h-12 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-bold text-xl transition-colors"
+                    >
+                        +
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tax Percentage -->
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-2">
+                    <label class="text-gray-700 font-semibold">Tax</label>
+                    <span class="text-orange-600 font-bold text-lg" id="taxPercentLabel">8%</span>
+                </div>
+                <input 
+                    type="range" 
+                    id="taxPercent" 
+                    min="0" 
+                    max="20" 
+                    value="8" 
+                    step="0.5"
+                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-orange-500"
+                    oninput="updateTaxLabel(); calculateBill()"
+                >
+                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>0%</span>
+                    <span>20%</span>
+                </div>
+            </div>
+
+            <!-- Tip Percentage -->
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-2">
+                    <label class="text-gray-700 font-semibold">Tip</label>
+                    <span class="text-orange-600 font-bold text-lg" id="tipPercentLabel">15%</span>
+                </div>
+                <input 
+                    type="range" 
+                    id="tipPercent" 
+                    min="0" 
+                    max="30" 
+                    value="15" 
+                    step="1"
+                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-orange-500"
+                    oninput="updateTipLabel(); calculateBill()"
+                >
+                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>0%</span>
+                    <span>30%</span>
+                </div>
+                <!-- Quick Tip Buttons -->
+                <div class="flex gap-2 mt-3">
+                    <button onclick="setTip(10)" class="flex-1 py-2 bg-gray-100 hover:bg-orange-100 text-gray-700 rounded-lg text-sm font-medium transition-colors">10%</button>
+                    <button onclick="setTip(15)" class="flex-1 py-2 bg-gray-100 hover:bg-orange-100 text-gray-700 rounded-lg text-sm font-medium transition-colors">15%</button>
+                    <button onclick="setTip(18)" class="flex-1 py-2 bg-gray-100 hover:bg-orange-100 text-gray-700 rounded-lg text-sm font-medium transition-colors">18%</button>
+                    <button onclick="setTip(20)" class="flex-1 py-2 bg-gray-100 hover:bg-orange-100 text-gray-700 rounded-lg text-sm font-medium transition-colors">20%</button>
+                </div>
+            </div>
+
+            <!-- Breakdown -->
+            <div class="border-t-2 border-gray-200 pt-6 space-y-3">
+                <div class="flex justify-between text-gray-600">
+                    <span>Subtotal:</span>
+                    <span class="font-semibold" id="subtotal">$0.00</span>
+                </div>
+                <div class="flex justify-between text-gray-600">
+                    <span>Tax (<span id="taxPercentDisplay">8</span>%):</span>
+                    <span class="font-semibold" id="taxAmount">$0.00</span>
+                </div>
+                <div class="flex justify-between text-gray-600">
+                    <span>Tip (<span id="tipPercentDisplay">15</span>%):</span>
+                    <span class="font-semibold" id="tipAmount">$0.00</span>
+                </div>
+                <div class="flex justify-between text-lg font-bold text-gray-800 pt-3 border-t border-gray-300">
+                    <span>Total:</span>
+                    <span id="totalAmount">$0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Card -->
+        <div class="bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl shadow-xl p-6 md:p-8 text-white">
+            <div class="text-center">
+                <p class="text-lg mb-2 opacity-90">Each Person Pays</p>
+                <p class="text-5xl font-bold mb-4" id="perPersonAmount">$0.00</p>
+                <div class="bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm">
+                    <p class="text-sm opacity-90 mb-1">Split between <span id="peopleCount" class="font-bold">2</span> people</p>
+                    <p class="text-xs opacity-75" id="breakdownText">Subtotal + Tax + Tip</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reset Button -->
+        <div class="text-center mt-6">
+            <button 
+                onclick="resetCalculator()" 
+                class="px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 rounded-lg font-semibold shadow-md transition-colors"
+            >
+                Reset Calculator
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Update tax label
+        function updateTaxLabel() {
+            var taxPercent = document.getElementById('taxPercent').value;
+            document.getElementById('taxPercentLabel').textContent = taxPercent + '%';
+            document.getElementById('taxPercentDisplay').textContent = taxPercent;
+        }
+
+        // Update tip label
+        function updateTipLabel() {
+            var tipPercent = document.getElementById('tipPercent').value;
+            document.getElementById('tipPercentLabel').textContent = tipPercent + '%';
+            document.getElementById('tipPercentDisplay').textContent = tipPercent;
+        }
+
+        // Set tip to preset value
+        function setTip(percentage) {
+            document.getElementById('tipPercent').value = percentage;
+            updateTipLabel();
+            calculateBill();
+        }
+
+        // Increase or decrease number of people
+        function adjustPeople(change) {
+            var input = document.getElementById('numPeople');
+            var currentValue = parseInt(input.value);
+            var newValue = currentValue + change;
+            if (newValue < 1) {
+                newValue = 1;
+            }
+            input.value = newValue;
+            calculateBill();
+        }
+
+        // Main calculation function
+        function calculateBill() {
+            // Get input values
+            var billAmount = parseFloat(document.getElementById('billAmount').value);
+            var numPeople = parseInt(document.getElementById('numPeople').value);
+            var taxPercent = parseFloat(document.getElementById('taxPercent').value);
+            var tipPercent = parseFloat(document.getElementById('tipPercent').value);
+
+            // Handle empty or invalid inputs
+            if (!billAmount) {
+                billAmount = 0;
+            }
+            if (!numPeople || numPeople < 1) {
+                numPeople = 1;
+            }
+
+            // Calculate amounts
+            var subtotal = billAmount;
+            var taxAmount = (subtotal * taxPercent) / 100;
+            var tipAmount = (subtotal * tipPercent) / 100;
+            var totalAmount = subtotal + taxAmount + tipAmount;
+            var perPerson = totalAmount / numPeople;
+
+            // Update subtotal display
+            document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+            
+            // Update tax display
+            document.getElementById('taxAmount').textContent = '$' + taxAmount.toFixed(2);
+            
+            // Update tip display
+            document.getElementById('tipAmount').textContent = '$' + tipAmount.toFixed(2);
+            
+            // Update total display
+            document.getElementById('totalAmount').textContent = '$' + totalAmount.toFixed(2);
+            
+            // Update per person display
+            document.getElementById('perPersonAmount').textContent = '$' + perPerson.toFixed(2);
+            
+            // Update people count
+            document.getElementById('peopleCount').textContent = numPeople;
+
+            // Update breakdown text
+            var breakdownText = '';
+            if (subtotal > 0) {
+                var billPerPerson = (subtotal / numPeople).toFixed(2);
+                var taxPerPerson = (taxAmount / numPeople).toFixed(2);
+                var tipPerPerson = (tipAmount / numPeople).toFixed(2);
+                breakdownText = '$' + billPerPerson + ' bill + $' + taxPerPerson + ' tax + $' + tipPerPerson + ' tip';
+            } else {
+                breakdownText = 'Enter bill amount';
+            }
+            document.getElementById('breakdownText').textContent = breakdownText;
+        }
+
+        // Reset calculator to default values
+        function resetCalculator() {
+            document.getElementById('billAmount').value = '';
+            document.getElementById('numPeople').value = '2';
+            document.getElementById('taxPercent').value = '8';
+            document.getElementById('tipPercent').value = '15';
+            updateTaxLabel();
+            updateTipLabel();
+            calculateBill();
+        }
+
+        // Run when page loads
+        window.onload = function() {
+            updateTaxLabel();
+            updateTipLabel();
+            calculateBill();
+        };
+    </script>
+</body>
+</html>
